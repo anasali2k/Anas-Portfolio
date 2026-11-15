@@ -897,146 +897,60 @@ main:before{display:none!important;}
 
 
 
-/* Final hero zoom correction: banner and page content share one scaling canvas. */
-@media (hover: hover) and (pointer: fine) {
-  .wrap,
-  .hero .wrap,
-  .hero-banner {
-    width: min(1760px, calc(100% - 32px)) !important;
-    max-width: none !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
 
+/* Clean hero banner rules: preserve the uploaded image's real ratio and fill both walls. */
+@media (min-width: 761px) and (hover: hover) and (pointer: fine) {
   .hero-banner {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     overflow: hidden !important;
   }
 
   .hero-banner-image,
-  .hero-banner-image img {
-    width: 100% !important;
-    max-width: none !important;
-  }
-
-  .hero-banner-image img {
-    height: auto !important;
-    object-fit: contain !important;
-    object-position: center center !important;
-  }
-}
-
-
-
-/* Final wall-anchor correction: full-bleed hero, edge-anchored content, no centered zoom box. */
-@media (hover: hover) and (pointer: fine) {
-  /* Keep the main text tied to the page walls instead of auto-centering a capped box. */
-  .wrap,
-  .hero .wrap {
-    width: calc(100% - 32px) !important;
-    max-width: none !important;
-    margin-left: 16px !important;
-    margin-right: 16px !important;
-  }
-
-  /* Hero remains full-width and attached to both viewport/page walls. */
-  .hero-banner {
-    width: 100% !important;
-    max-width: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* Fixed CSS height makes the banner image visibly shrink/grow with Chrome zoom,
-     while its outer edge remains full bleed. */
-  .hero-banner-image,
   .hero-banner-image.has-image {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
     width: 100% !important;
-    height: 400px !important;
+    height: auto !important;
     min-height: 0 !important;
+    aspect-ratio: 24 / 5 !important;
+    overflow: hidden !important;
+    line-height: 0 !important;
+  }
+
+  /* Keep a visible fallback frame; show the uploaded image only after its saved state loads. */
+  .hero-banner-image img {
+    display: none !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: left top !important;
+    vertical-align: top !important;
+  }
+
+  .hero-banner-image.has-image {
     aspect-ratio: auto !important;
   }
 
-  .hero-banner-image img,
-  .hero-banner-image.has-image img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-    object-fit: cover !important;
-    object-position: center center !important;
-  }
-}
-
-
-
-/* Hero full-show correction: preserve the complete uploaded image while retaining zoom scaling. */
-@media (hover: hover) and (pointer: fine) {
-  .hero-banner {
-    overflow: hidden !important;
-    height: 400px !important;
-    min-height: 0 !important;
-  }
-
-  .hero-banner-image,
-  .hero-banner-image.has-image {
-    height: 400px !important;
-    min-height: 0 !important;
-    overflow: hidden !important;
-    background: linear-gradient(135deg, #f4f6fb 0%, #e8ebf5 52%, #f1ecfa 100%) !important;
-  }
-
-  /* Contain prevents the top and bottom of the hero banner from being cropped. */
-  .hero-banner-image img,
   .hero-banner-image.has-image img {
     display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-    object-fit: contain !important;
-    object-position: center center !important;
-    vertical-align: middle !important;
-  }
-}
-
-
-
-/* Wide hero correction: fill the existing banner frame without changing zoom behavior. */
-@media (hover: hover) and (pointer: fine) {
-  .hero-banner-image img,
-  .hero-banner-image.has-image img {
-    width: 100% !important;
-    height: 100% !important;
-    max-width: none !important;
-    max-height: none !important;
-    object-fit: fill !important;
-    object-position: center center !important;
-  }
-}
-
-
-
-/* Zoom anchor correction: capture the original banner width, then let browser zoom scale it. */
-@media (hover: hover) and (pointer: fine) {
-  .hero-banner {
-    width: var(--hero-base-width, 100%) !important;
-    max-width: none !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
   }
 
-  .hero-banner-image,
-  .hero-banner-image.has-image {
-    width: var(--hero-base-width, 100%) !important;
-    height: var(--hero-base-height, 400px) !important;
-    min-height: 0 !important;
+  .hero-pitch h2 {
+    font-size: clamp(34px, 3.8vw, 56px) !important;
+    line-height: 1.12 !important;
   }
 
-  .hero-banner-image img,
-  .hero-banner-image.has-image img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: fill !important;
+  .hero-pitch .check {
+    font-size: clamp(17px, 1.6vw, 22px) !important;
+    line-height: 1.35 !important;
   }
 }
 
@@ -1202,21 +1116,5 @@ renderSite();setActiveSection('home');observeSections();
 })();
 </script>
 <button id="goTopBtn" type="button" aria-label="Go to top" title="Go to top">↑</button>
-<script>
-(() => {
-  const setHeroZoomAnchor = () => {
-    const banner = document.querySelector('.hero-banner');
-    if (!banner || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    if (document.documentElement.dataset.heroZoomAnchored === 'true') return;
-    const baseWidth = Math.max(window.innerWidth, document.documentElement.clientWidth);
-    const baseHeight = Math.max(banner.offsetHeight, 400);
-    document.documentElement.style.setProperty('--hero-base-width', `${baseWidth}px`);
-    document.documentElement.style.setProperty('--hero-base-height', `${baseHeight}px`);
-    document.documentElement.dataset.heroZoomAnchored = 'true';
-  };
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setHeroZoomAnchor, {once: true});
-  else setHeroZoomAnchor();
-})();
-</script>
 
 </body></html>
