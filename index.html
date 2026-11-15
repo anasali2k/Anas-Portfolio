@@ -1371,6 +1371,24 @@ main:before{display:none!important;}
   #services .service-card:last-child,#servicesGrid .service-card:last-child{margin-bottom:0!important;}
 }
 
+
+
+/* My Skills: dedicated badge column prevents text overlap and keeps levels centered */
+#skillsList .skill{display:grid!important;grid-template-columns:48px minmax(0,1fr) 84px!important;align-items:center!important;overflow:visible!important;}
+#skillsList .skill>span:nth-child(2){min-width:0!important;width:auto!important;padding-right:5px!important;position:relative!important;z-index:1!important;overflow:visible!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;}
+#skillsList .skill strong{position:relative!important;inset:auto!important;align-self:center!important;justify-self:end!important;width:84px!important;min-width:0!important;max-width:100%!important;z-index:3!important;text-align:center!important;white-space:normal!important;overflow:hidden!important;transform:none!important;}
+#skillsList .skill strong:after{z-index:1!important;pointer-events:none!important;}
+@media(max-width:760px){#skillsList .skill{grid-template-columns:20px minmax(0,1fr) 44px!important;align-items:center!important;}#skillsList .skill>span:nth-child(2){padding-right:3px!important;}#skillsList .skill strong{width:44px!important;font-size:6px!important;line-height:1!important;}}
+@media(max-width:430px){#skillsList .skill{grid-template-columns:20px minmax(0,1fr) 42px!important;}#skillsList .skill strong{width:42px!important;font-size:5.7px!important;}}
+
+
+
+/* Center level labels exactly inside their blue animated badges */
+#skillsList .skill strong{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;vertical-align:middle!important;height:24px!important;min-height:24px!important;padding:0 5px!important;line-height:1!important;}
+#skillsList .skill strong *{display:inline!important;margin:0!important;padding:0!important;line-height:1!important;text-align:center!important;vertical-align:middle!important;}
+@media(max-width:760px){#skillsList .skill strong{height:16px!important;min-height:16px!important;padding:0 2px!important;}}
+@media(max-width:430px){#skillsList .skill strong{height:15px!important;min-height:15px!important;}}
+
 </style>
 </head>
 <body>
