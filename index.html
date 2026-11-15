@@ -687,6 +687,214 @@ main:before{display:none!important;}
 .footer-socials a.social3d {
   flex: 0 0 37px !important;
 }
+
+
+/* Browser-zoom stability: preserve the desktop canvas and keep the hero fluid.
+   Touch/mobile layouts remain controlled by the existing mobile rules. */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    min-width: 1100px;
+  }
+
+  /* Do not cap the page at a max-width when Chrome zoom-out increases the CSS viewport. */
+  .wrap,
+  .hero .wrap {
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  /* Keep the same two-column content anchor instead of switching into a centered narrow box. */
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr) !important;
+    gap: clamp(24px, 4vw, 64px) !important;
+  }
+
+  .dashboard {
+    grid-template-columns: minmax(0, 1.03fr) minmax(0, 1.08fr) minmax(0, 1.16fr) !important;
+  }
+
+  .lower {
+    grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr) !important;
+  }
+
+  .skills-list {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  /* The uploaded hero image follows the same zoom-scaled page width. */
+  .hero-banner,
+  .hero-banner-image,
+  .hero-banner-image img {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .hero-banner-image {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    aspect-ratio: 24 / 5 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .hero-banner-image.has-image {
+    aspect-ratio: auto !important;
+  }
+
+  .hero-banner-image img {
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    vertical-align: top !important;
+  }
+}
+
+
+
+/* Desktop zoom anchor: keep the existing desktop composition when Chrome changes CSS viewport width. */
+@media (hover: hover) and (pointer: fine) {
+  .topbar {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    left: 0 !important;
+    height: 82px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .navwrap {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .brand-mini,
+  .mobile-menu {
+    display: none !important;
+  }
+
+  .nav {
+    display: flex !important;
+    position: static !important;
+    flex: 0 0 auto !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: max-content !important;
+    max-width: calc(100% - 24px) !important;
+    height: auto !important;
+    min-height: 58px !important;
+    margin: 0 auto !important;
+    padding: 7px 10px !important;
+    overflow: visible !important;
+    border-radius: 18px !important;
+    background: rgba(27, 32, 91, .055) !important;
+    box-shadow: 0 7px 20px rgba(20, 15, 78, .035), inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+    backdrop-filter: blur(9px) !important;
+  }
+
+  .nav a {
+    display: block !important;
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: auto !important;
+    padding: 11px 15px !important;
+    font-size: 14px !important;
+    line-height: normal !important;
+    white-space: nowrap !important;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr) !important;
+    gap: clamp(24px, 4vw, 64px) !important;
+    padding: clamp(24px, 3.5vw, 42px) !important;
+    border-radius: 26px !important;
+  }
+
+  .hero .hero-pitch {
+    display: block !important;
+    min-height: 0 !important;
+    padding: 12px 0 12px clamp(18px, 3vw, 44px) !important;
+    border-top: 0 !important;
+    border-left: 1px solid #e2def0 !important;
+  }
+
+  .hero-pitch .hero-profile {
+    display: none !important;
+  }
+
+  .hero-personal {
+    gap: 8px 10px !important;
+    font-size: 14px !important;
+  }
+
+  #about {
+    height: 270px !important;
+    min-height: 270px !important;
+    max-height: 270px !important;
+  }
+
+  #about .about-inner {
+    display: block !important;
+    height: auto !important;
+    padding-right: 195px !important;
+  }
+
+  #about .about-photo {
+    position: absolute !important;
+    top: 50% !important;
+    right: 10px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 175px !important;
+    height: calc(100% - 28px) !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    transform: translateY(-50%) !important;
+  }
+
+  #about .about-photo:hover {
+    transform: translateY(-50%) !important;
+  }
+
+  #services .service-card {
+    height: auto !important;
+    min-height: 74px !important;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  .reviews-layout {
+    grid-template-columns: minmax(270px, .72fr) minmax(0, 1.28fr) !important;
+  }
+
+  .review-panel .panel-body {
+    display: block !important;
+  }
+
+  .section {
+    padding: 4px 0 !important;
+  }
+}
+
 </style>
 </head>
 <body>
