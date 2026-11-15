@@ -1277,6 +1277,32 @@ main:before{display:none!important;}
 .rich-text-output{box-sizing:border-box!important;max-width:100%!important;}
 .rich-text-output span[style*="font-size"]{box-sizing:border-box!important;max-width:100%!important;}
 
+
+
+/* Fixed normal panel/editor heights: font size must not stretch the layout */
+.inline-text-editor{height:42px!important;min-height:42px!important;max-height:90px!important;overflow:auto!important;line-height:1.35!important;}
+.inline-text-editor[aria-multiline=true]{height:90px!important;min-height:90px!important;max-height:90px!important;overflow:auto!important;}
+@media(min-width:761px){
+  #about,#services,#skills{height:270px!important;min-height:270px!important;max-height:270px!important;overflow:visible!important;}
+  #about .panel-body,#services .panel-body,#skills .panel-body{height:270px!important;min-height:270px!important;max-height:270px!important;overflow:visible!important;box-sizing:border-box!important;}
+  #services .services-grid{height:calc(270px - 48px)!important;max-height:none!important;overflow:visible!important;}
+  #skillsList{max-height:calc(270px - 54px)!important;overflow:visible!important;}
+}
+
+
+
+/* Final no-clipping rule: every service, skill and text remains visible inside its panel */
+@media(min-width:761px){
+  #about,#services,#skills{height:auto!important;min-height:270px!important;max-height:none!important;overflow:visible!important;align-self:stretch!important;}
+  #about .panel-body,#services .panel-body,#skills .panel-body{height:auto!important;min-height:270px!important;max-height:none!important;overflow:visible!important;box-sizing:border-box!important;}
+  #services .services-grid{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;grid-auto-rows:minmax(72px,auto)!important;align-content:start!important;}
+  #services .service-card{height:auto!important;min-height:72px!important;max-height:none!important;overflow:visible!important;}
+  #skillsList{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;grid-auto-rows:minmax(58px,auto)!important;}
+  #skillsList .skill{height:auto!important;min-height:58px!important;max-height:none!important;overflow:visible!important;}
+}
+#services .service-card,#skillsList .skill{box-sizing:border-box!important;max-width:100%!important;}
+#services .service-card b,#skillsList .skill>span:nth-child(2),#skillsList .skill strong{max-width:100%!important;overflow:visible!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important;text-overflow:clip!important;}
+
 </style>
 </head>
 <body>
@@ -1389,7 +1415,7 @@ function focusClickedSection(target){
 }
 document.getElementById('mainNav').addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;e.preventDefault();const target=(a.getAttribute('href')||'#home').slice(1);const destination=document.getElementById(target);setActiveSection(target);focusClickedSection(target);document.getElementById('mainNav').classList.remove('open');if(destination)destination.scrollIntoView({behavior:'smooth',block:'start'})});
 function observeSections(){setActiveSection('home')}
-function equalizeDashboardPanels(){const about=document.getElementById('about'),services=document.getElementById('services'),skills=document.getElementById('skills');if(!about||!services||!skills)return;if(window.innerWidth>760){about.style.setProperty('height','auto','important');services.style.setProperty('height','auto','important');requestAnimationFrame(()=>{const h=Math.ceil(skills.getBoundingClientRect().height);about.style.setProperty('height',h+'px','important');services.style.setProperty('height',h+'px','important')})}else{about.style.removeProperty('height');services.style.removeProperty('height')}}
+function equalizeDashboardPanels(){const about=document.getElementById('about'),services=document.getElementById('services'),skills=document.getElementById('skills');if(!about||!services||!skills)return;[about,services,skills].forEach(el=>{el.style.removeProperty('height');el.style.removeProperty('min-height');el.style.removeProperty('max-height')})}
 window.addEventListener('resize',equalizeDashboardPanels);
 
 
