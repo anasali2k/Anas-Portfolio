@@ -967,6 +967,38 @@ main:before{display:none!important;}
   }
 }
 
+
+
+/* Hero full-show correction: preserve the complete uploaded image while retaining zoom scaling. */
+@media (hover: hover) and (pointer: fine) {
+  .hero-banner {
+    overflow: hidden !important;
+    height: 400px !important;
+    min-height: 0 !important;
+  }
+
+  .hero-banner-image,
+  .hero-banner-image.has-image {
+    height: 400px !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    background: linear-gradient(135deg, #f4f6fb 0%, #e8ebf5 52%, #f1ecfa 100%) !important;
+  }
+
+  /* Contain prevents the top and bottom of the hero banner from being cropped. */
+  .hero-banner-image img,
+  .hero-banner-image.has-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    vertical-align: middle !important;
+  }
+}
+
 </style>
 </head>
 <body>
