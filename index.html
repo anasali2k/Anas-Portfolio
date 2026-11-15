@@ -925,6 +925,48 @@ main:before{display:none!important;}
   }
 }
 
+
+
+/* Final wall-anchor correction: full-bleed hero, edge-anchored content, no centered zoom box. */
+@media (hover: hover) and (pointer: fine) {
+  /* Keep the main text tied to the page walls instead of auto-centering a capped box. */
+  .wrap,
+  .hero .wrap {
+    width: calc(100% - 32px) !important;
+    max-width: none !important;
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+
+  /* Hero remains full-width and attached to both viewport/page walls. */
+  .hero-banner {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Fixed CSS height makes the banner image visibly shrink/grow with Chrome zoom,
+     while its outer edge remains full bleed. */
+  .hero-banner-image,
+  .hero-banner-image.has-image {
+    width: 100% !important;
+    height: 400px !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+  }
+
+  .hero-banner-image img,
+  .hero-banner-image.has-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+}
+
 </style>
 </head>
 <body>
