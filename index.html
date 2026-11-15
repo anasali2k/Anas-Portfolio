@@ -999,6 +999,47 @@ main:before{display:none!important;}
   }
 }
 
+
+
+/* Wide hero correction: fill the existing banner frame without changing zoom behavior. */
+@media (hover: hover) and (pointer: fine) {
+  .hero-banner-image img,
+  .hero-banner-image.has-image img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: fill !important;
+    object-position: center center !important;
+  }
+}
+
+
+
+/* Zoom anchor correction: capture the original banner width, then let browser zoom scale it. */
+@media (hover: hover) and (pointer: fine) {
+  .hero-banner {
+    width: var(--hero-base-width, 100%) !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .hero-banner-image,
+  .hero-banner-image.has-image {
+    width: var(--hero-base-width, 100%) !important;
+    height: var(--hero-base-height, 400px) !important;
+    min-height: 0 !important;
+  }
+
+  .hero-banner-image img,
+  .hero-banner-image.has-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1160,4 +1201,22 @@ renderSite();setActiveSection('home');observeSections();
 	});
 })();
 </script>
-<button id="goTopBtn" type="button" aria-label="Go to top" title="Go to top">↑</button></body></html>
+<button id="goTopBtn" type="button" aria-label="Go to top" title="Go to top">↑</button>
+<script>
+(() => {
+  const setHeroZoomAnchor = () => {
+    const banner = document.querySelector('.hero-banner');
+    if (!banner || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (document.documentElement.dataset.heroZoomAnchored === 'true') return;
+    const baseWidth = Math.max(window.innerWidth, document.documentElement.clientWidth);
+    const baseHeight = Math.max(banner.offsetHeight, 400);
+    document.documentElement.style.setProperty('--hero-base-width', `${baseWidth}px`);
+    document.documentElement.style.setProperty('--hero-base-height', `${baseHeight}px`);
+    document.documentElement.dataset.heroZoomAnchored = 'true';
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setHeroZoomAnchor, {once: true});
+  else setHeroZoomAnchor();
+})();
+</script>
+
+</body></html>
