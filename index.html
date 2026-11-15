@@ -1252,6 +1252,25 @@ main:before{display:none!important;}
   .lower>.panel{min-width:0!important;width:100%!important;scroll-snap-align:none!important;}
 }
 
+
+
+/* Mobile Skills badges: keep PC-style animation visible in compact cards */
+#skillsList .skill strong{position:relative!important;isolation:isolate!important;display:flex!important;align-items:center!important;justify-content:center!important;background:linear-gradient(110deg,#6d20d9,#087fee,#20b8a6,#6d20d9)!important;background-size:260% 100%!important;color:#fff!important;animation:skillBadgeGradient 4.5s ease-in-out infinite,skillBadgeFloat 2.8s ease-in-out infinite!important;}
+#skillsList .skill strong:after{z-index:1!important;display:block!important;}
+@media(max-width:760px){
+  #skillsList .skill{min-height:43px!important;height:auto!important;}
+  #skillsList .skill strong{min-width:0!important;min-height:16px!important;height:16px!important;padding:2px 1px!important;font-size:6.2px!important;line-height:1!important;border-radius:999px!important;background-size:320% 100%!important;animation:skillBadgeGradient 2.8s linear infinite,skillBadgeFloat 2.2s ease-in-out infinite!important;}
+  #skillsList .skill strong:after{width:55%!important;animation:skillBadgeShine 2.2s ease-in-out infinite!important;}
+}
+@media(max-width:430px){#skillsList .skill strong{font-size:5.8px!important;height:15px!important;min-height:15px!important;}}
+
+
+
+/* About image sheen animation stays visible on mobile too */
+#about .about-photo:after{content:""!important;display:block!important;position:absolute!important;z-index:3!important;inset:-35%!important;pointer-events:none!important;background:linear-gradient(110deg,transparent 43%,rgba(255,255,255,.34) 49%,rgba(255,255,255,.06) 55%,transparent 61%)!important;transform:translateX(-90%) rotate(12deg)!important;animation:aboutPhotoSheen 6s ease-in-out infinite!important;}
+@media(max-width:760px){#about .about-photo:after{display:block!important;animation:aboutPhotoSheen 5.5s ease-in-out infinite!important;}}
+@media(prefers-reduced-motion:reduce){#about .about-photo:after{animation:none!important;}}
+
 </style>
 </head>
 <body>
