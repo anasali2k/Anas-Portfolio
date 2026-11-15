@@ -1220,6 +1220,38 @@ main:before{display:none!important;}
   .hero .hello{animation-duration:4s!important;}
 }
 
+
+
+/* Final mobile compact PC-style layout: three main panels stay locked side-by-side */
+@media(max-width:760px){
+  body{overflow-x:hidden!important;}
+  main{overflow-x:hidden!important;}
+  .dashboard{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important;padding:0!important;width:100%!important;}
+  .dashboard>.panel,.dashboard .skills-panel{grid-column:auto!important;min-width:0!important;width:100%!important;scroll-snap-align:none!important;}
+  .dashboard .panel-body{padding:8px 5px!important;}
+  .dashboard .section-head{gap:5px!important;margin-bottom:7px!important;}
+  .dashboard .section-head h2{font-size:12px!important;line-height:1.05!important;}
+  .dashboard .section-head p{font-size:7px!important;line-height:1.1!important;}
+  .dashboard .section-icon{width:25px!important;height:25px!important;min-width:25px!important;border-radius:8px!important;font-size:12px!important;}
+  #about .about-inner{display:block!important;padding:0!important;margin:0!important;}
+  #about .about-inner>div:first-child{padding:0 3px!important;}
+  #about .about-inner p{font-size:8px!important;line-height:1.35!important;margin:0!important;}
+  #about .about-photo{position:relative!important;right:auto!important;top:auto!important;width:100%!important;height:72px!important;min-height:72px!important;margin:7px 0 0!important;transform:none!important;border-radius:9px!important;}
+  #about .about-photo img{object-fit:cover!important;}
+  #services .services-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:4px!important;padding:0!important;height:auto!important;max-height:none!important;overflow:visible!important;}
+  #services .service-card{min-height:52px!important;height:auto!important;padding:5px 2px!important;gap:4px!important;border-radius:8px!important;}
+  #services .service-icon{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;border-radius:7px!important;}
+  #services .service-icon svg,#services .service-brand-mark svg{width:15px!important;height:15px!important;}
+  #services .service-card b{font-size:7px!important;line-height:1.1!important;padding:0!important;}
+  #skillsList{display:grid!important;grid-template-columns:1fr!important;gap:4px!important;padding:0!important;}
+  #skillsList .skill{grid-template-columns:20px minmax(0,1fr) 38px!important;min-height:42px!important;height:auto!important;padding:5px 3px!important;gap:4px!important;border-radius:8px!important;}
+  #skillsList .skill-icon{width:20px!important;height:20px!important;min-width:20px!important;min-height:20px!important;border-radius:6px!important;font-size:12px!important;}
+  #skillsList .skill>span:nth-child(2){font-size:7px!important;line-height:1.1!important;}
+  #skillsList .skill strong{font-size:5.5px!important;min-height:15px!important;padding:2px 1px!important;}
+  .lower{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important;overflow:visible!important;padding:0!important;}
+  .lower>.panel{min-width:0!important;width:100%!important;scroll-snap-align:none!important;}
+}
+
 </style>
 </head>
 <body>
@@ -1263,8 +1295,8 @@ function serviceMark(name,fallback){const n=(name||'').toLowerCase();let body;if
 function socialClass(n){const v=(n||'').toLowerCase();return /facebook/.test(v)?'brand-facebook':/instagram/.test(v)?'brand-instagram':/tiktok/.test(v)?'brand-tiktok':/youtube/.test(v)?'brand-youtube':/whatsapp/.test(v)?'brand-whatsapp':/linkedin/.test(v)?'brand-linkedin':/(^x$|twitter)/.test(v)?'brand-x':'brand-generic'}
 function socialMark(x){const v=(x.name||'').toLowerCase();let shape;if(/facebook/.test(v))shape='<path d="M13.4 21v-8.2h2.8l.42-3.2H13.4V7.55c0-.93.26-1.56 1.6-1.56h1.72V3.12A22.6 22.6 0 0 0 14.2 3c-2.5 0-4.22 1.52-4.22 4.3v2.3H7.15v3.2h2.83V21z"/>';else if(/instagram/.test(v))shape='<rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="2.3"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2.3"/><circle cx="17.8" cy="6.5" r="1.25"/>';else if(/tiktok/.test(v))shape='<path d="M15 3h3c.2 2.2 1.4 3.7 3.7 4v3.1a9 9 0 0 1-3.7-1.2v6.5a5.7 5.7 0 1 1-5.7-5.7c.4 0 .8 0 1.2.1V13a2.7 2.7 0 1 0 1.5 2.4z"/>';else if(/youtube/.test(v))shape='<rect x="2.7" y="5.3" width="18.6" height="13.4" rx="4"/><path d="m10 8.6 5.5 3.4-5.5 3.4z" fill="#ff123a"/>';else if(/whatsapp/.test(v))shape='<path d="M12 3a8.7 8.7 0 0 0-7.5 13.1L3.4 20.7l4.8-1.1A8.7 8.7 0 1 0 12 3zm0 15.7a7 7 0 0 1-3.6-1l-.4-.2-2.8.7.7-2.7-.3-.5a7 7 0 1 1 6.4 3.7zm3.9-5.2c-.2-.1-1.3-.7-1.5-.8s-.4-.1-.5.1-.6.8-.8.9-.3.2-.5.1a5.7 5.7 0 0 1-1.7-1.1 6.4 6.4 0 0 1-1.2-1.5c-.1-.2 0-.3.1-.4l.4-.5c.1-.1.2-.3.2-.4s0-.3 0-.4L9.7 8c-.1-.3-.3-.3-.5-.3h-.4c-.2 0-.4.1-.6.3s-.8.8-.8 1.9.8 2.1.9 2.3a9.3 9.3 0 0 0 3.6 3.2c1.4.6 1.9.7 2.6.6.8-.1 1.3-.6 1.5-1s.2-.8.2-.9-.1-.2-.3-.3z"/>';else if(/linkedin/.test(v))shape='<path d="M5.2 8.6a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6zM3.7 10h3v10h-3zm5 0h2.9v1.4h.04a3.2 3.2 0 0 1 2.9-1.6c3.1 0 3.7 2 3.7 4.5V20h-3v-5c0-1.2 0-2.7-1.7-2.7s-1.9 1.3-1.9 2.6V20h-3z"/>';else if(/(^x$|twitter)/.test(v))shape='<path d="M18.9 3h2.7l-5.9 6.8 6.9 11.2h-5.4L13 13.4 7 21H4.2l6.3-7.3L3.9 3h5.5l3.8 6.4zm-1 16h1.5L8.3 5H6.7z"/>';else return `<span class="social-fallback">${esc(x.symbol||x.name?.slice(0,2)||'•')}</span>`;return `<svg viewBox="0 0 24 24" aria-hidden="true">${shape}</svg>`}
 function idb(){return new Promise((resolve,reject)=>{const req=indexedDB.open('AnasPortfolioImages',1);req.onupgradeneeded=()=>req.result.createObjectStore('images');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
-async function imgGet(key){if(!key)return null;try{const db=await idb();return await new Promise((res,rej)=>{const r=db.transaction('images').objectStore('images').get(key);r.onsuccess=()=>res(r.result||null);r.onerror=()=>rej(r.error)})}catch(e){return null}}
-async function imgSet(key,val){const db=await idb();return new Promise((res,rej)=>{const tx=db.transaction('images','readwrite');tx.objectStore('images').put(val,key);tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error)})}
+async function imgGet(key){if(!key)return null;try{const db=await idb();const blob=await new Promise((res,rej)=>{const r=db.transaction('images').objectStore('images').get(key);r.onsuccess=()=>res(r.result||null);r.onerror=()=>rej(r.error)});if(blob)return blob}catch(e){}try{const raw=localStorage.getItem('anas-image-data-'+key);if(raw){const res=await fetch(raw);return await res.blob()}}catch(e){}return null}
+async function imgSet(key,val){const db=await idb();await new Promise((res,rej)=>{const tx=db.transaction('images','readwrite');tx.objectStore('images').put(val,key);tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error)});try{const reader=new FileReader();const dataUrl=await new Promise((res,rej)=>{reader.onload=()=>res(reader.result);reader.onerror=()=>rej(reader.error);reader.readAsDataURL(val)});if(String(dataUrl).length<2500000)localStorage.setItem('anas-image-data-'+key,dataUrl)}catch(e){}}
 async function imgDel(key){if(!key)return;const db=await idb();return new Promise((res,rej)=>{const tx=db.transaction('images','readwrite');tx.objectStore('images').delete(key);tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error)})}
 async function setImage(el,which){const key=data.images?.[which],img=el.querySelector('img'),banner=which==='hero'?el.closest('.hero-banner'):null;if(!key){el.classList.remove('has-image');img.removeAttribute('src');if(banner)banner.classList.remove('has-image');return}const val=await imgGet(key);if(val){img.src=URL.createObjectURL(val);el.classList.add('has-image');if(banner)banner.classList.add('has-image')}else{el.classList.remove('has-image');if(banner)banner.classList.remove('has-image')}}
 async function renderSectionIcons(){
