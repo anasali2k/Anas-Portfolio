@@ -895,6 +895,36 @@ main:before{display:none!important;}
   }
 }
 
+
+
+/* Final hero zoom correction: banner and page content share one scaling canvas. */
+@media (hover: hover) and (pointer: fine) {
+  .wrap,
+  .hero .wrap,
+  .hero-banner {
+    width: min(1760px, calc(100% - 32px)) !important;
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-banner {
+    overflow: hidden !important;
+  }
+
+  .hero-banner-image,
+  .hero-banner-image img {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .hero-banner-image img {
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+  }
+}
+
 </style>
 </head>
 <body>
