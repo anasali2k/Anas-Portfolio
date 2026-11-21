@@ -2903,6 +2903,95 @@ body{padding-bottom:86px!important}
   #skillsList{row-gap:9px!important;column-gap:9px!important;}
 }
 </style>
+<style id="mobile-refinements-requested">
+@media(max-width:760px){
+  /* Match the desktop translucent glass navigation while retaining the mobile row. */
+  .topbar{position:absolute!important;top:0!important;left:0!important;right:0!important;background:transparent!important;border:0!important;box-shadow:none!important;z-index:60!important;}
+  .nav{
+    background:rgba(34,24,91,.28)!important;
+    border:1px solid rgba(255,255,255,.52)!important;
+    border-radius:18px!important;
+    box-shadow:0 10px 30px rgba(23,15,76,.14),inset 0 1px 0 rgba(255,255,255,.34)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+    backdrop-filter:blur(14px)!important;
+  }
+  .nav a{color:#fff!important;text-shadow:0 1px 10px rgba(10,10,40,.25)!important;}
+  .nav a.active,.nav a:hover{color:#fff!important;background:linear-gradient(105deg,rgba(117,21,223,.9),rgba(7,135,234,.9))!important;}
+
+  /* Keep the uploaded hero banner visibly sized on mobile. */
+  .hero-banner{display:block!important;width:100%!important;height:auto!important;min-height:0!important;overflow:hidden!important;}
+  .hero-banner-image{
+    position:relative!important;inset:auto!important;display:block!important;
+    width:100%!important;height:clamp(145px,38vw,230px)!important;
+    min-height:145px!important;max-height:none!important;aspect-ratio:auto!important;
+    overflow:hidden!important;
+  }
+  .hero-banner-image.has-image{height:clamp(145px,38vw,230px)!important;min-height:145px!important;aspect-ratio:auto!important;}
+  .hero-banner-image img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;}
+  .hero-banner-hint{display:flex!important;padding:48px 12px 8px!important;gap:4px!important;}
+  .hero-banner.has-image .hero-banner-hint{display:none!important;}
+
+  /* Let About and Services use only the height their mobile content needs. */
+  .dashboard{align-items:start!important;grid-auto-rows:max-content!important;}
+  #about,#services{
+    height:auto!important;min-height:0!important;max-height:none!important;
+    align-self:start!important;overflow:visible!important;
+  }
+  #about .panel-body,#services .panel-body{
+    height:auto!important;min-height:0!important;max-height:none!important;
+    overflow:visible!important;
+  }
+  #about .about-photo{height:108px!important;min-height:108px!important;max-height:108px!important;}
+  #services .services-grid,#servicesGrid{
+    height:auto!important;min-height:0!important;max-height:none!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:none!important;grid-auto-rows:40px!important;
+    gap:4px!important;overflow:visible!important;align-content:start!important;
+  }
+  #services .service-card,#servicesGrid .service-card{
+    height:40px!important;min-height:40px!important;max-height:40px!important;
+    overflow:visible!important;
+  }
+
+  /* Keep each skill logo in its own left column; text and level stay beside it. */
+  #skillsList{
+    display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    row-gap:5px!important;column-gap:8px!important;
+  }
+  #skillsList .skill{
+    display:grid!important;
+    grid-template-columns:26px minmax(0,1fr) 50px!important;
+    grid-template-rows:minmax(0,1fr)!important;
+    align-items:center!important;justify-items:stretch!important;
+    width:100%!important;height:auto!important;min-height:58px!important;max-height:none!important;
+    padding:6px 7px!important;gap:0 7px!important;overflow:visible!important;
+  }
+  #skillsList .skill>.skill-icon{
+    grid-column:1!important;grid-row:1!important;align-self:center!important;justify-self:center!important;
+    width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;
+    margin:0!important;position:relative!important;inset:auto!important;transform:none!important;
+  }
+  #skillsList .skill>span:nth-child(2){
+    grid-column:2!important;grid-row:1!important;align-self:center!important;justify-self:stretch!important;
+    display:block!important;position:relative!important;inset:auto!important;transform:none!important;
+    min-width:0!important;width:auto!important;margin:0!important;padding:0!important;
+    font-size:10px!important;line-height:1.15!important;text-align:left!important;
+    white-space:normal!important;overflow:visible!important;overflow-wrap:anywhere!important;word-break:normal!important;
+  }
+  #skillsList .skill>.track{display:none!important;}
+  #skillsList .skill>strong{
+    grid-column:3!important;grid-row:1!important;align-self:center!important;justify-self:stretch!important;
+    position:relative!important;inset:auto!important;transform:none!important;
+    width:50px!important;min-width:0!important;max-width:100%!important;margin:0!important;
+  }
+}
+@media(max-width:420px){
+  #skillsList .skill{grid-template-columns:24px minmax(0,1fr) 46px!important;min-height:56px!important;padding:5px 6px!important;gap:0 6px!important;}
+  #skillsList .skill>.skill-icon{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;}
+  #skillsList .skill>span:nth-child(2){font-size:9.5px!important;}
+  #skillsList .skill>strong{width:46px!important;}
+}
+</style>
 </head>
 <body>
 <header class="topbar"><div class="wrap navwrap"><a class="brand-mini" href="#home">AA<span style="color:#1687ee">.</span></a><button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button><nav class="nav" id="mainNav" aria-label="Main navigation"><a href="#home">⌂ &nbsp;Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#reviews">Reviews</a><a href="#contact">Contact</a></nav><a class="btn small nav-cta" href="#contact">Let's talk</a></div></header>
