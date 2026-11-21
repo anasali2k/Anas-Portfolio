@@ -1476,7 +1476,25 @@ function loadReviews(){try{return JSON.parse(localStorage.getItem('anasPortfolio
 function saveLocalReviews(){try{localStorage.setItem('anasPortfolioReviews',JSON.stringify(reviews))}catch(e){console.warn('Local review backup failed',e)}}
 async function persistReviewsCloud(){if(!cloudSession)return;const ids=reviews.map(r=>r.id);const {data:existing,error:readError}=await sb.from('portfolio_reviews').select('id');if(readError)throw readError;const stale=(existing||[]).map(x=>x.id).filter(id=>!ids.includes(id));if(stale.length){const {error}=await sb.from('portfolio_reviews').delete().in('id',stale);if(error)throw error}if(reviews.length){const rows=reviews.map(r=>({id:r.id,name:r.name,text:r.text,stars:r.stars,status:r.status,date:r.date,submitted_at:r.submittedAt||new Date().toISOString()}));const {error}=await sb.from('portfolio_reviews').upsert(rows,{onConflict:'id'});if(error)throw error}}
 async function loadCloudState(){const {data:row,error}=await sb.from('portfolio_state').select('payload').eq('id','main').maybeSingle();if(error)throw error;if(row?.payload){data={...DEFAULT,...row.payload,sectionIcons:{...DEFAULT.sectionIcons,...(row.payload.sectionIcons||{})}};saveLocalData()}else if(cloudSession){await persistDataCloud()}const {data:reviewRows,error:reviewError}=await sb.from('portfolio_reviews').select('*').order('submitted_at',{ascending:true});if(reviewError)throw reviewError;if(reviewRows&&reviewRows.length){reviews=reviewRows.map(r=>({id:r.id,name:r.name,text:r.text,stars:r.stars,status:r.status,date:r.date,submittedAt:r.submitted_at}));saveLocalReviews()}else if(cloudSession&&reviews.length){await persistReviewsCloud()}else{reviews=[];saveLocalReviews()}}
-async function initializeCloud(){try{const {data:sessionData}=await sb.auth.getSession();cloudSession=sessionData?.session||null;await loadCloudState();cloudReady=true;initializeCloud();if(cloudSession)await migrateLegacyImages()}catch(e){console.error('Supabase initialization failed:',e);notify('Cloud connection failed. Check Supabase setup.');renderSite();setActiveSection('home');observeSections()}}
+async function initializeCloud(){
+  try{
+    const {data:sessionData}=await sb.auth.getSession();
+    cloudSession=sessionData?.session||null;
+    await loadCloudState();
+    cloudReady=true;
+
+    if(cloudSession){
+      await migrateLegacyImages();
+    }
+
+  }catch(e){
+    console.error('Supabase initialization failed:',e);
+    notify('Cloud connection failed. Check Supabase setup.');
+    renderSite();
+    setActiveSection('home');
+    observeSections();
+  }
+}
 async function migrateLegacyImages(){if(!cloudSession)return;try{const db=await idb();const keys=await new Promise((resolve,reject)=>{const tx=db.transaction('images');const req=tx.objectStore('images').getAllKeys();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error)});for(const key of keys){const blob=await new Promise((resolve,reject)=>{const tx=db.transaction('images');const req=tx.objectStore('images').get(key);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error)});if(blob){const {error}=await sb.storage.from(SUPABASE_BUCKET).upload(String(key),blob,{upsert:true,contentType:blob.type||'application/octet-stream'});if(error)throw error}}}catch(e){console.warn('Legacy image migration:',e);notify('Some old device-only images could not be migrated. Re-upload them in Admin.')}}
 function saveReviews(){saveLocalReviews();if(cloudSession)persistReviewsCloud().catch(e=>{console.error(e);notify('Review cloud save failed')});renderReviews();if(document.getElementById('adminShell').classList.contains('open')&&activeTab==='reviews')renderAdmin('reviews')}
 function reviewStars(n){return '★'.repeat(Math.max(1,Math.min(5,+n||5)))+'☆'.repeat(5-Math.max(1,Math.min(5,+n||5)))}
