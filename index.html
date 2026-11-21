@@ -3035,4 +3035,544 @@ bootPortfolio();
 
 <button id="goTopBtn" type="button" aria-label="Go to top" title="Go to top">↑</button>
 
+
+<style id="final-mobile-pc-header-and-tight-spacing">
+/* FINAL MOBILE PC-STYLE HEADER + TIGHT CONTENT SPACING */
+@media (max-width:760px){
+
+  /* Mobile header: use the same visual language as the desktop header.
+     Only scale it down to fit the mobile viewport. */
+  .topbar{
+    position:sticky!important;
+    top:0!important;
+    bottom:auto!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    height:58px!important;
+    min-height:58px!important;
+    z-index:120!important;
+    background:rgba(247,248,253,.94)!important;
+    border-bottom:0!important;
+    box-shadow:none!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+    border-radius:0!important;
+  }
+
+  .navwrap{
+    width:100%!important;
+    height:100%!important;
+    padding:7px 8px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+  }
+
+  .brand-mini,
+  .mobile-menu,
+  .nav-cta{
+    display:none!important;
+  }
+
+  .nav{
+    display:flex!important;
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    max-width:720px!important;
+    height:46px!important;
+    min-height:46px!important;
+    margin:0 auto!important;
+    padding:4px!important;
+    gap:2px!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scrollbar-width:none!important;
+
+    /* Same desktop-style pill treatment */
+    background:rgba(239,241,250,.88)!important;
+    border:1px solid rgba(224,227,241,.95)!important;
+    border-radius:18px!important;
+    box-shadow:0 8px 24px rgba(38,50,102,.10)!important;
+    backdrop-filter:blur(12px)!important;
+    -webkit-backdrop-filter:blur(12px)!important;
+  }
+
+  .nav::-webkit-scrollbar{
+    display:none!important;
+  }
+
+  .nav a,
+  .nav a:first-child,
+  .nav a:not(:first-child){
+    flex:0 0 auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    width:auto!important;
+    height:36px!important;
+    min-height:36px!important;
+    padding:7px 9px!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex-direction:row!important;
+    gap:4px!important;
+    border-radius:13px!important;
+    background:transparent!important;
+    color:#1d2340!important;
+    font-size:9px!important;
+    line-height:1!important;
+    font-weight:800!important;
+    white-space:nowrap!important;
+    text-shadow:none!important;
+    box-shadow:none!important;
+    transform:none!important;
+  }
+
+  /* Remove the previous mobile-only home icon replacement. */
+  .nav a:first-child{
+    font-size:9px!important;
+  }
+  .nav a:first-child:before{
+    content:none!important;
+    display:none!important;
+  }
+
+  .nav a:hover,
+  .nav a.active{
+    color:#fff!important;
+    background:linear-gradient(135deg,#7a22e8 0%,#087eea 100%)!important;
+    box-shadow:0 7px 16px rgba(72,29,166,.28)!important;
+    transform:none!important;
+  }
+
+  .nav a:after,
+  .nav a:hover:after,
+  .nav a.active:after{
+    display:none!important;
+    content:none!important;
+  }
+
+  /* Keep the existing white bottom navigation untouched. */
+  .mobile-bottom-nav{
+    display:grid!important;
+  }
+
+  /* Tighten the skills list: remove the large vertical gaps between rows. */
+  #skills{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow:hidden!important;
+  }
+
+  #skills .panel-body{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    padding:7px!important;
+    overflow:hidden!important;
+  }
+
+  #skillsList{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-auto-rows:30px!important;
+    gap:3px!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    padding:0 8px 7px!important;
+    margin:0!important;
+    align-content:start!important;
+  }
+
+  #skillsList .skill{
+    width:100%!important;
+    height:30px!important;
+    min-height:30px!important;
+    max-height:30px!important;
+    padding:3px 4px!important;
+    margin:0!important;
+    gap:3px!important;
+    grid-template-columns:18px minmax(0,1fr) 36px!important;
+    border-radius:7px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+
+  #skillsList .skill-icon{
+    width:18px!important;
+    height:18px!important;
+    min-width:18px!important;
+    min-height:18px!important;
+    border-radius:5px!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+
+  #skillsList .skill>span:nth-child(2){
+    min-width:0!important;
+    padding:0!important;
+    font-size:4.8px!important;
+    line-height:1.05!important;
+    overflow:hidden!important;
+  }
+
+  #skillsList .skill strong{
+    width:36px!important;
+    min-width:36px!important;
+    height:11px!important;
+    min-height:11px!important;
+    padding:0 1px!important;
+    font-size:4.3px!important;
+    line-height:1!important;
+    overflow:hidden!important;
+  }
+
+  /* Reduce the space immediately around the skills rows as well. */
+  .skills-top{
+    padding:8px 11px 5px!important;
+  }
+
+  /* Keep the existing compact About/Services heights and remove only
+     unnecessary internal bottom space. */
+  #about .panel-body,
+  #services .panel-body{
+    overflow:hidden!important;
+  }
+}
+
+@media (max-width:420px){
+  .topbar{
+    height:56px!important;
+    min-height:56px!important;
+  }
+
+  .nav{
+    height:44px!important;
+    min-height:44px!important;
+    padding:3px!important;
+    border-radius:17px!important;
+  }
+
+  .nav a,
+  .nav a:first-child,
+  .nav a:not(:first-child){
+    height:35px!important;
+    min-height:35px!important;
+    padding:7px 7px!important;
+    font-size:8.5px!important;
+  }
+
+  #skillsList{
+    grid-auto-rows:28px!important;
+    gap:3px!important;
+    padding-left:7px!important;
+    padding-right:7px!important;
+    padding-bottom:6px!important;
+  }
+
+  #skillsList .skill{
+    height:28px!important;
+    min-height:28px!important;
+    max-height:28px!important;
+    grid-template-columns:17px minmax(0,1fr) 34px!important;
+    padding:2px 3px!important;
+  }
+
+  #skillsList .skill-icon{
+    width:17px!important;
+    height:17px!important;
+    min-width:17px!important;
+    min-height:17px!important;
+  }
+
+  #skillsList .skill>span:nth-child(2){
+    font-size:4.5px!important;
+  }
+
+  #skillsList .skill strong{
+    width:34px!important;
+    min-width:34px!important;
+    height:10px!important;
+    min-height:10px!important;
+    font-size:4.1px!important;
+  }
+}
+</style>
+
 </body></html>
+
+<style id="final-mobile-reference-fit">
+/* FINAL MOBILE REFERENCE FIT — only mobile presentation adjustments. */
+@media (max-width:760px){
+  /* Use the same navigation visual language as desktop, scaled for mobile. */
+  .topbar{
+    position:sticky!important;
+    top:0!important;
+    height:58px!important;
+    background:rgba(255,255,255,.96)!important;
+    backdrop-filter:blur(14px)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+    border-bottom:1px solid #e8eafb!important;
+    z-index:100!important;
+  }
+  .navwrap{
+    width:100%!important;
+    padding:5px 8px!important;
+    justify-content:center!important;
+    overflow:hidden!important;
+  }
+  .brand-mini,.mobile-menu,.nav-cta{display:none!important;}
+  .nav{
+    display:flex!important;
+    position:relative!important;
+    left:auto!important;
+    right:auto!important;
+    top:auto!important;
+    width:100%!important;
+    max-width:none!important;
+    min-height:46px!important;
+    height:46px!important;
+    padding:4px!important;
+    margin:0!important;
+    gap:2px!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    flex-wrap:nowrap!important;
+    border:1px solid #e4e8f4!important;
+    border-radius:16px!important;
+    background:#fff!important;
+    box-shadow:0 8px 20px rgba(38,50,102,.10)!important;
+    scrollbar-width:none!important;
+  }
+  .nav::-webkit-scrollbar{display:none!important;}
+  .nav a{
+    flex:0 0 auto!important;
+    height:36px!important;
+    min-height:36px!important;
+    padding:8px 9px!important;
+    border-radius:12px!important;
+    font-size:10px!important;
+    line-height:1!important;
+    font-weight:800!important;
+    color:#243052!important;
+    white-space:nowrap!important;
+  }
+  .nav a:hover,.nav a.active{
+    color:#fff!important;
+    background:var(--grad)!important;
+    box-shadow:0 6px 15px #5411bb42!important;
+  }
+
+  /* Never cover the top of the hero image with the header. */
+  .hero-banner{
+    height:auto!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+  .hero-banner-image{
+    position:relative!important;
+    inset:auto!important;
+    width:100%!important;
+    height:auto!important;
+    min-height:0!important;
+    aspect-ratio:auto!important;
+    display:block!important;
+    overflow:hidden!important;
+  }
+  .hero-banner-image.has-image{
+    height:auto!important;
+    min-height:0!important;
+    aspect-ratio:auto!important;
+  }
+  .hero-banner-image img{
+    display:block!important;
+    width:100%!important;
+    height:auto!important;
+    max-height:none!important;
+    object-fit:contain!important;
+    object-position:center center!important;
+    vertical-align:top!important;
+  }
+
+  /* Compact About + Services: equal height, only the space required by content. */
+  .dashboard{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:8px!important;
+    align-items:stretch!important;
+  }
+  #about,#services{
+    height:205px!important;
+    min-height:205px!important;
+    max-height:205px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  #about .panel-body,#services .panel-body{
+    height:100%!important;
+    padding:8px!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  #about .section-head,#services .section-head{
+    margin-bottom:4px!important;
+  }
+  #about .section-icon,#services .section-icon{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    border-radius:9px!important;
+    font-size:15px!important;
+  }
+  #about .section-head h2,#services .section-head h2{font-size:12px!important;}
+  #about .section-head p,#services .section-head p{font-size:7px!important;}
+  #about .about-inner{
+    grid-template-columns:minmax(0,1fr) 78px!important;
+    gap:5px!important;
+    align-items:start!important;
+    height:auto!important;
+    min-height:0!important;
+  }
+  #about .about-inner p{
+    margin:0!important;
+    padding:0!important;
+    font-size:7px!important;
+    line-height:1.34!important;
+    text-align:left!important;
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+    word-break:normal!important;
+    hyphens:auto!important;
+  }
+  #about .about-photo{
+    width:78px!important;
+    height:108px!important;
+    min-width:78px!important;
+    min-height:108px!important;
+    max-width:78px!important;
+    max-height:108px!important;
+    margin:0!important;
+    align-self:start!important;
+    border-radius:10px!important;
+  }
+  #about .about-photo img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    display:block!important;
+  }
+  #services .services-grid,#servicesGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:repeat(3,46px)!important;
+    grid-auto-rows:46px!important;
+    gap:5px!important;
+    height:148px!important;
+    min-height:148px!important;
+    max-height:148px!important;
+    padding:0!important;
+    margin:0!important;
+    align-content:start!important;
+    overflow:hidden!important;
+  }
+  #services .service-card,#servicesGrid .service-card{
+    height:46px!important;
+    min-height:46px!important;
+    max-height:46px!important;
+    padding:3px 2px!important;
+    margin:0!important;
+    border-radius:8px!important;
+    gap:2px!important;
+    box-sizing:border-box!important;
+    justify-content:center!important;
+  }
+  #services .service-card .service-icon,#servicesGrid .service-card .service-icon{
+    width:21px!important;
+    height:21px!important;
+    min-width:21px!important;
+    min-height:21px!important;
+    flex:0 0 21px!important;
+    border-radius:6px!important;
+    margin:0 0 1px!important;
+  }
+  #services .service-card .service-icon svg,#servicesGrid .service-card .service-icon svg{
+    width:12px!important;
+    height:12px!important;
+  }
+  #services .service-card b,#servicesGrid .service-card b{
+    font-size:5.5px!important;
+    line-height:1.04!important;
+    text-align:center!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    max-height:none!important;
+    width:100%!important;
+    margin:0!important;
+  }
+
+  /* Compact Skills rows: no oversized blank space beneath each skill. */
+  .skills-panel .panel-body{padding:0!important;}
+  .skills-top{padding:11px 13px 6px!important;}
+  .skills-list{
+    padding:0 13px 9px!important;
+    gap:6px!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  #skillsList .skill{
+    height:38px!important;
+    min-height:38px!important;
+    max-height:38px!important;
+    grid-template-columns:21px minmax(0,1fr) 40px!important;
+    gap:5px!important;
+    padding:4px 5px!important;
+    box-sizing:border-box!important;
+  }
+  #skillsList .skill-icon{
+    width:21px!important;
+    height:21px!important;
+    min-width:21px!important;
+    min-height:21px!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+  #skillsList .skill>span:nth-child(2){
+    font-size:5.7px!important;
+    line-height:1.08!important;
+    min-width:0!important;
+  }
+  #skillsList .skill strong{
+    width:40px!important;
+    min-width:40px!important;
+    font-size:4.7px!important;
+    line-height:1!important;
+    padding:4px 2px!important;
+  }
+}
+
+@media (max-width:420px){
+  .topbar{height:56px!important;}
+  .nav{height:44px!important;min-height:44px!important;padding:3px!important;}
+  .nav a{height:35px!important;min-height:35px!important;padding:8px 8px!important;font-size:9.5px!important;}
+  #about,#services{height:200px!important;min-height:200px!important;max-height:200px!important;}
+  #about .about-inner{grid-template-columns:minmax(0,1fr) 78px!important;gap:5px!important;}
+  #about .about-inner p{font-size:6.8px!important;line-height:1.31!important;}
+  #about .about-photo{width:78px!important;height:108px!important;min-width:78px!important;min-height:108px!important;max-width:78px!important;max-height:108px!important;}
+  #services .services-grid,#servicesGrid{grid-template-rows:repeat(3,44px)!important;grid-auto-rows:44px!important;height:142px!important;min-height:142px!important;max-height:142px!important;gap:5px!important;}
+  #services .service-card,#servicesGrid .service-card{height:44px!important;min-height:44px!important;max-height:44px!important;}
+  #services .service-card b,#servicesGrid .service-card b{font-size:5.3px!important;}
+  .skills-list{gap:5px!important;padding-left:10px!important;padding-right:10px!important;}
+  #skillsList .skill{height:36px!important;min-height:36px!important;max-height:36px!important;grid-template-columns:20px minmax(0,1fr) 38px!important;}
+  #skillsList .skill-icon{width:20px!important;height:20px!important;min-width:20px!important;min-height:20px!important;}
+  #skillsList .skill>span:nth-child(2){font-size:5.4px!important;}
+  #skillsList .skill strong{width:38px!important;min-width:38px!important;font-size:4.5px!important;}
+}
+</style>
